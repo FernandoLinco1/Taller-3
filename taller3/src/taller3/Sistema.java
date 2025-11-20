@@ -1,18 +1,48 @@
 package taller3;
-
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
 public class Sistema {
 	
 	private ArrayList<Usuario> usuarios= new ArrayList<>();
 	private ArrayList<Proyecto> proyectos= new ArrayList<>();
 	private ArrayList<Tarea> tareas= new ArrayList<>();
-	public Sistema(String usuarios, String proyectos, String tareas) {
+	public Sistema(ArrayList<ArrayList<String>> usuarios, ArrayList<ArrayList<String>> proyectos, ArrayList<ArrayList<String>> tareas) {
 		this.usuarios=lecturaU(usuarios);
 		this.proyectos=lecturaP(proyectos);
 		this.tareas=lecturaT(tareas);
+		
+	}
+	
+	public ArrayList<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public ArrayList<Proyecto> getProyectos() {
+		return proyectos;
+	}
+
+	public ArrayList<Tarea> getTareas() {
+		return tareas;
+	}
+
+	public void addProyecto(String nombreP, String encargadoP) {
+		int cont=0;
+		for(int i=0;i<proyectos.size();i++) {
+			cont=i;
+		}
+		cont= cont+2;
+		
+		if(cont<10) {
+		  String id= "PR00"+String.valueOf(cont);
+		  proyectos.add(new Proyecto(id,nombreP,encargadoP));		
+		}else if(cont<100) {
+			  String id= "PR0"+String.valueOf(cont);
+			  proyectos.add(new Proyecto(id,nombreP,encargadoP));		
+			}else if(cont>=100) {
+				  String id= "PR"+String.valueOf(cont);
+				  proyectos.add(new Proyecto(id,nombreP,encargadoP));		
+				}
+		
+		
 	}
 	
 	public String verificacionUsuario(String usuario) {
@@ -42,69 +72,37 @@ public class Sistema {
 		return "";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	private ArrayList<Usuario> lecturaU(String texto) {
+	private ArrayList<Usuario> lecturaU(ArrayList<ArrayList<String>> usuarios){
 		ArrayList<Usuario> lista= new ArrayList<>();
-		try {
-			File arch= new File(texto);
-			Scanner lec= new Scanner(arch);
-			while(lec.hasNextLine()) {
-				String linea= lec.nextLine();
-				String[] partes= linea.split("\\|");
-				Usuario clase= new Usuario(partes[0],partes[1],partes[2]);
-				lista.add(clase);
-			}
-			lec.close();
-			
-		}catch(FileNotFoundException e) {
-			System.out.println("no se a encotrado el archivo");
+		for(ArrayList<String> i: usuarios) {
+			lista.add(new Usuario(i.get(0),i.get(1),i.get(2)));
 		}
 		return lista;
 	}
 	
-	private ArrayList<Proyecto> lecturaP(String texto) {
+	private ArrayList<Proyecto> lecturaP(ArrayList<ArrayList<String>> proyectos){
 		ArrayList<Proyecto> lista= new ArrayList<>();
-		try {
-			File arch= new File(texto);
-			Scanner lec= new Scanner(arch);
-			while(lec.hasNextLine()) {
-				String linea= lec.nextLine();
-				String[] partes= linea.split("\\|");
-				Proyecto clase= new Proyecto(partes[0],partes[1],partes[2]);
-				lista.add(clase);
-			}
-			lec.close();
-			
-		}catch(FileNotFoundException e) {
-			System.out.println("no se a encotrado el archivo");
+		for(ArrayList<String> i: proyectos) {
+			lista.add(new Proyecto(i.get(0),i.get(1),i.get(2)));
 		}
 		return lista;
 	}
 	
-	private ArrayList<Tarea> lecturaT(String texto) {
+	private ArrayList<Tarea> lecturaT(ArrayList<ArrayList<String>> tareas){
 		ArrayList<Tarea> lista= new ArrayList<>();
-		try {
-			File arch= new File(texto);
-			Scanner lec= new Scanner(arch);
-			while(lec.hasNextLine()) {
-				String linea= lec.nextLine();
-				String[] partes= linea.split("\\|");
-				Tarea clase= new Tarea(partes[0],partes[1],partes[2],partes[3],partes[4],partes[5],partes[6],partes[7]);
-				lista.add(clase);
-			}
-			lec.close();
-			
-		}catch(FileNotFoundException e) {
-			System.out.println("no se a encotrado el archivo");
+		for(ArrayList<String> i: tareas) {
+			lista.add(new Tarea(i.get(0),i.get(1),i.get(2),i.get(3),i.get(4),i.get(5),i.get(6),i.get(7)));
 		}
 		return lista;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
 
