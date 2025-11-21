@@ -3,7 +3,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 public class MenuProyecto {
 	private static Scanner lector;
 	
@@ -28,7 +27,7 @@ public class MenuProyecto {
 			case "1":
 				ArrayList<Proyecto> proyectos= sis.getProyectos();
 				ArrayList<Tarea>	tareas= sis.getTareas();
-				ArrayList<Usuario> usuarios= sis.getUsuarios();
+				
 				System.out.println();
 				System.out.println("Bienvenido "+u);
 				System.out.println();
@@ -44,11 +43,10 @@ public class MenuProyecto {
 				decision= lector.nextLine();
 				switch(decision) {
 				case "1":
-	
 					for(Proyecto pro : proyectos) {
 							String proyectoID= pro.getIdProyecto();
 							String proyectoN= pro.getNombre();
-							System.out.println( "ID: "+proyectoID+" Proyecto: "+proyectoN+" a cargo de: "+pro.getResponsable());
+							System.out.println( "ID: "+proyectoID+" Proyecto: "+proyectoN+" Encargado: "+pro.getResponsable());
 							for(Tarea ta : tareas) {
 								if(ta.getIdProyecto().equals(proyectoID)) {
 									System.out.println("ID: "+ta.getIdTarea()+ " Tarea: "+ta.getTipo()+" Descripcion: "+ta.getDescripcion()+" Estado: "+ta.getEstado()+" Encargado: "+ta.getResponsable() +" Complejidad: "+ta.getComplejidad()+" Fecha: "+ta.getFecha());
@@ -74,14 +72,43 @@ public class MenuProyecto {
 						sis.addProyecto(nombreP, encargadoP);
 						break;
 					case "2":
-						
+						for(int i=0;i<proyectos.size();i++) {
+							System.out.println((i+1)+". ID: "+proyectos.get(i).getIdProyecto()+" Proyecto: "+proyectos.get(i).getNombre()+" Encargado: "+proyectos.get(i).getResponsable());
+						}
+						System.out.print(">>> ");
+						int proyectoBorrado= Integer.valueOf(lector.nextLine());
+						sis.BorrarProyecto(proyectoBorrado);
 						break;
 					default:
 						System.out.println("Eleccion incorrecta...");
 					}
+					break;
+				case "3":
+					System.out.println();
+					System.out.println("1. Agregar proyecto.");
+					System.out.println("2. Eliminar proyecto.");
+					System.out.print(">>> ");
+					decision= lector.nextLine();
+					switch(decision) {
+					case "1":
+						for(int i=0;i<proyectos.size();i++) {
+							System.out.println((i+1)+". ID: "+proyectos.get(i).getIdProyecto()+" Proyecto: "+proyectos.get(i).getNombre()+" Encargado: "+proyectos.get(i).getResponsable());
+						}
+						System.out.print(">>> ");
+						String proyecto= lector.nextLine();
+						System.out.println("Tipo de tarea.");
+						System.out.println("1. Bug.");
+						System.out.println("2. Feature.");
+						System.out.println("3. Documentación.");
+						System.out.print(">>> ");
+						String tipo= lector.nextLine();
+						System.out.println("Descripción.");
+						String descripcion= lector.nextLine();
+						
+					break;
 					
 					
-					
+					}
 					break;
 				case "6":
 					System.out.println("Cerrando sistema...");

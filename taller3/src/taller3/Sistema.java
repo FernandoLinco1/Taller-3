@@ -45,6 +45,44 @@ public class Sistema {
 		
 	}
 	
+	public void BorrarProyecto(int proyectoBorrado) {
+		
+		for(int i=0;i<proyectos.size();i++) {
+			if(proyectoBorrado==(i+1)) {
+				String proyecto= proyectos.get(i).getIdProyecto();
+				 tareas.removeIf(t -> t.getIdProyecto().equals(proyecto));
+				    proyectos.removeIf(p -> p.getIdProyecto().equals(proyecto ));
+				    String proyectoBor= proyecto;
+				    for(Proyecto pro: proyectos ) {
+				    	String[] partes= proyectoBor.split("R");
+				    	String[] partes0= pro.getIdProyecto().split("R");
+				    	if(Integer.valueOf(partes[1])<Integer.valueOf(partes0[1])) {
+				    		
+				 		String aux= pro.getIdProyecto();
+				    		pro.setIdProyecto(proyectoBor);
+				    		proyectoBor= aux;
+				    		for(Tarea ta: tareas) {
+				    			if(proyectoBor.equals(ta.getIdProyecto())) {
+				    				ta.setIdProyecto(pro.getIdProyecto());	
+				    			}
+				    		}
+				    	}
+				    }
+			}
+		}
+		
+		
+	    for(int i=0;i<tareas.size();i++) {
+	    	int n=i+1;
+	    	if(n<10) {
+	    		tareas.get(i).setIdTarea("T00"+n);
+	    	}else if(n<100) {
+	    		tareas.get(i).setIdTarea("T0"+n);
+	    	}else if(n>=100) {
+	    		tareas.get(i).setIdTarea("T"+n);
+	    	}
+	    }
+	}
 	public String verificacionUsuario(String usuario) {
 		for(Usuario u: usuarios) {
 			if(u.getNombreUsuario().equals(usuario)) {
