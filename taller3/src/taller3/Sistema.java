@@ -83,13 +83,27 @@ public class Sistema {
 	    	}
 	    }
 	}
+	public ArrayList<Tarea> tareasDeColaborador(String colab){
+		ArrayList<Tarea> tareas= this.tareas;
+		for(Tarea t : tareas) {
+			if(colab.equals(t.getResponsable())) {
+				tareas.add(t);
+			}
+		}
+		return tareas;
+	}
 	public String verificacionUsuario(String usuario) {
 		for(Usuario u: usuarios) {
 			if(u.getNombreUsuario().equals(usuario)) {
 				return "1";
 			}
 		}
-		return "0";
+		if(usuario.equals("salir")) {
+			return usuario;
+		}else {
+			return "0";	
+		}
+		
 		
 	} 
 	
