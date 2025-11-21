@@ -31,7 +31,7 @@ public class MenuProyecto {
 				decision="";
 				System.out.println("Bienvenido "+u);
 				System.out.println();
-				while(!decision.equals("6") && !decision.equals("5")) {
+				while(!decision.equals("6")) {
 				System.out.println("Menu administrador");
 				System.out.println("1. Ver lista completa de proyectos y tareas.");
 				System.out.println("2. Agregar o eliminar un proyecto.");
@@ -124,7 +124,7 @@ public class MenuProyecto {
 				decision="";
 				System.out.println("Bienvenido "+u);
 				System.out.println();
-				while(!decision.equals("6") && !decision.equals("5")) {
+				while(!decision.equals("5")) {
 				System.out.println("Menu Colaborador");
 				System.out.println("1. Ver proyectos disponibles.");
 				System.out.println("2. Ver tareas asignadas.");
