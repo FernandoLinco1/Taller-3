@@ -87,13 +87,31 @@ public class Sistema {
 	    }
 	}
 	public ArrayList<Tarea> tareasDeColaborador(String colab){
-		ArrayList<Tarea> tareas= this.tareas;
+		ArrayList<Tarea> tarea= new ArrayList<>();
 		for(Tarea t : tareas) {
-			if(colab.equals(t.getResponsable())) {
-				tareas.add(t);
+			if(t.getResponsable().equals(colab)) {
+				tarea.add(t);
 			}
 		}
-		return tareas;
+		return tarea;
+	}
+	public void cambiarEstadoTarea(Tarea tarea, String estado) {
+		for(Tarea t : tareas) {
+			if(t.equals(tarea)) {
+				switch(estado) {
+				case "1":
+					t.setEstado("Pendiente");
+					break;
+				case "2":
+					t.setEstado("Progreso");
+					break;
+				case "3":
+					t.setEstado("Completada");
+					break;
+				}
+			}
+		}
+
 	}
 	public String verificacionUsuario(String usuario) {
 		for(Usuario u: usuarios) {

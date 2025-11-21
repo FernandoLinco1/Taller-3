@@ -12,7 +12,6 @@ public class MenuProyecto {
 		String decision="";
 		String usuario="";
 		while(!usuario.equals("salir")) {
-		System.out.println();
 		System.out.println("Ingrese un usuario");
 		System.out.print(">>> ");
 		String u= lector.nextLine();
@@ -141,20 +140,47 @@ public class MenuProyecto {
 					}
 					break;
 				case "2":
-					ArrayList<Tarea> tareaColab= sis.tareasDeColaborador(u);
-					
+					 
+					for(Tarea ta : sis.tareasDeColaborador(u)) {
+							System.out.println("ProyectoID: "+ta.getIdProyecto()+" ID: "+ta.getIdTarea()+ " Tarea: "+ta.getTipo()+" Descripcion: "+ta.getDescripcion()+" Estado: "+ta.getEstado()+" Complejidad: "+ta.getComplejidad()+" Fecha: "+ta.getFecha());	
+					}
+					System.out.println();
+
+					break;
+				case "3":
+					int i=1;
+					for(Tarea ta : sis.tareasDeColaborador(u)) {
+						System.out.println(i+". "+" ID: "+ta.getIdTarea()+ " Tarea: "+ta.getTipo()+" Estado: "+ta.getEstado());	
+						i++;
+					}
+					System.out.print(">>> ");
+					int tarea= Integer.valueOf(lector.nextLine());
+					System.out.println("1. Pendiente.");
+					System.out.println("2. Progreso.");
+					System.out.println("3. Completada.");
+					System.out.print(">>> ");
+					String estado= lector.nextLine();
+					i=1;
+					for(Tarea ta : sis.tareasDeColaborador(u)) {
+						if(tarea==i) {
+							sis.cambiarEstadoTarea(ta, estado);
+						}
+						i++;
+					}
 					break;
 				case "5":
 					System.out.println("Saliendo del menu...");
 					break;
 				default:
 					System.out.println("Eleccion incorrecta...");
+					System.out.println();
 					break;
 				}
 				}
 				break;
 			default:
 				System.out.println("Contraseña Incorrecta");
+				System.out.println();
 				break;
 			}
 			break;
@@ -164,9 +190,11 @@ public class MenuProyecto {
 			break;
 		case "salir":
 			System.out.println("Cerrar sistema...");
+			System.out.println();
 			break;
 		default:
 			System.out.println("Error De Sistema...");
+			System.out.println();
 			break;
 		}
 		}
