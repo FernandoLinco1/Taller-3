@@ -10,11 +10,13 @@ public class MenuProyecto {
 		lector= new Scanner(System.in);
 		Sistema sis= new Sistema(lector("usuarios.txt"),lector("proyectos.txt"),lector("tareas.txt"));
 		String decision="";
-		while(!decision.equals("6") && !decision.equals("5")) {
+		String usuario="";
+		while(!usuario.equals("salir")) {
+		System.out.println();
 		System.out.println("Ingrese un usuario");
 		System.out.print(">>> ");
 		String u= lector.nextLine();
-		String usuario= sis.verificacionUsuario(u);
+		usuario= sis.verificacionUsuario(u);
 		switch(usuario) {
 		case "1":
 			System.out.println("Usuario valido");
@@ -25,10 +27,9 @@ public class MenuProyecto {
 			
 			switch(contraseña) {
 			case "1":
-				ArrayList<Proyecto> proyectos= sis.getProyectos();
-				ArrayList<Tarea>	tareas= sis.getTareas();
 				
 				System.out.println();
+				decision="";
 				System.out.println("Bienvenido "+u);
 				System.out.println();
 				while(!decision.equals("6") && !decision.equals("5")) {
@@ -43,11 +44,11 @@ public class MenuProyecto {
 				decision= lector.nextLine();
 				switch(decision) {
 				case "1":
-					for(Proyecto pro : proyectos) {
+					for(Proyecto pro : sis.getProyectos()) {
 							String proyectoID= pro.getIdProyecto();
 							String proyectoN= pro.getNombre();
 							System.out.println( "ID: "+proyectoID+" Proyecto: "+proyectoN+" Encargado: "+pro.getResponsable());
-							for(Tarea ta : tareas) {
+							for(Tarea ta : sis.getTareas()) {
 								if(ta.getIdProyecto().equals(proyectoID)) {
 									System.out.println("ID: "+ta.getIdTarea()+ " Tarea: "+ta.getTipo()+" Descripcion: "+ta.getDescripcion()+" Estado: "+ta.getEstado()+" Encargado: "+ta.getResponsable() +" Complejidad: "+ta.getComplejidad()+" Fecha: "+ta.getFecha());
 								}
@@ -72,8 +73,8 @@ public class MenuProyecto {
 						sis.addProyecto(nombreP, encargadoP);
 						break;
 					case "2":
-						for(int i=0;i<proyectos.size();i++) {
-							System.out.println((i+1)+". ID: "+proyectos.get(i).getIdProyecto()+" Proyecto: "+proyectos.get(i).getNombre()+" Encargado: "+proyectos.get(i).getResponsable());
+						for(int i=0;i<sis.getProyectos().size();i++) {
+							System.out.println((i+1)+". ID: "+sis.getProyectos().get(i).getIdProyecto()+" Proyecto: "+sis.getProyectos().get(i).getNombre()+" Encargado: "+sis.getProyectos().get(i).getResponsable());
 						}
 						System.out.print(">>> ");
 						int proyectoBorrado= Integer.valueOf(lector.nextLine());
@@ -91,8 +92,8 @@ public class MenuProyecto {
 					decision= lector.nextLine();
 					switch(decision) {
 					case "1":
-						for(int i=0;i<proyectos.size();i++) {
-							System.out.println((i+1)+". ID: "+proyectos.get(i).getIdProyecto()+" Proyecto: "+proyectos.get(i).getNombre()+" Encargado: "+proyectos.get(i).getResponsable());
+						for(int i=0;i<sis.getProyectos().size();i++) {
+							System.out.println((i+1)+". ID: "+sis.getProyectos().get(i).getIdProyecto()+" Proyecto: "+sis.getProyectos().get(i).getNombre()+" Encargado: "+sis.getProyectos().get(i).getResponsable());
 						}
 						System.out.print(">>> ");
 						String proyecto= lector.nextLine();
@@ -111,7 +112,7 @@ public class MenuProyecto {
 					}
 					break;
 				case "6":
-					System.out.println("Cerrando sistema...");
+					System.out.println("Saliendo del menu...");
 					break;
 				default:
 					System.out.println("Eleccion incorrecta...");
@@ -120,7 +121,10 @@ public class MenuProyecto {
 				}
 				break;
 			case "0":
+				System.out.println();
+				decision="";
 				System.out.println("Bienvenido "+u);
+				System.out.println();
 				while(!decision.equals("6") && !decision.equals("5")) {
 				System.out.println("Menu Colaborador");
 				System.out.println("1. Ver proyectos disponibles.");
@@ -131,8 +135,17 @@ public class MenuProyecto {
 				System.out.print(">>> ");
 				decision= lector.nextLine();
 				switch(decision) {
+				case "1":
+					for(Proyecto pro: sis.getProyectos()) {
+						System.out.println("Proyecto: "+pro.getNombre()+" Encargado: "+pro.getResponsable());
+					}
+					break;
+				case "2":
+					ArrayList<Tarea> tareaColab= sis.tareasDeColaborador(u);
+					
+					break;
 				case "5":
-					System.out.println("Cerrando sistema...");
+					System.out.println("Saliendo del menu...");
 					break;
 				default:
 					System.out.println("Eleccion incorrecta...");
@@ -148,6 +161,9 @@ public class MenuProyecto {
 		case "0":
 			System.out.println("Usuario No Valido");
 			System.out.println();
+			break;
+		case "salir":
+			System.out.println("Cerrar sistema...");
 			break;
 		default:
 			System.out.println("Error De Sistema...");
