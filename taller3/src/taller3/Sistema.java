@@ -1,5 +1,6 @@
 package taller3;
 import java.util.ArrayList;
+import java.util.Iterator;
 public class Sistema {
 	
 	private ArrayList<Usuario> usuarios= new ArrayList<>();
@@ -9,6 +10,8 @@ public class Sistema {
 		this.usuarios=lecturaU(usuarios);
 		this.proyectos=lecturaP(proyectos);
 		this.tareas=lecturaT(tareas);
+		
+		asignarTareas();
 		
 	}
 	
@@ -133,6 +136,28 @@ public class Sistema {
 		}
 		return lista;
 	}
+	
+	// codigo para buscar y conectar las tareas con los colaboradores asignados
+	
+	public Usuario buscarUsuario(String nombre) {
+		for (Usuario u : usuarios) {
+			if (u.getNombreUsuario().equalsIgnoreCase(nombre)) {
+				return u;
+			}
+		}
+		return null;
+	}
+	private void asignarTareas() {
+		for (Tarea tarea : tareas) {
+			String nombreResponsable = tarea.getResponsable();
+			Usuario responsable = buscarUsuario(nombreResponsable);
+			if (responsable != null) {
+				responsable.añadirTarea(tarea);
+			}
+		}
+	}
+		
+
 	
 	
 	

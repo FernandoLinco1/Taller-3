@@ -1,14 +1,19 @@
 package taller3;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Usuario {
 	private String nombreUsuario;
 	private String contraseña;
 	private String rol;
+	private List<Tarea> tareasAsignadas;
 	public Usuario(String nombreUsuario, String contraseña, String rol) {
 		
 		this.nombreUsuario = nombreUsuario;
 		this.contraseña = contraseña;
 		this.rol = rol;
+		this.tareasAsignadas = new ArrayList<>();
 	}
 	public String getNombreUsuario() {
 		return nombreUsuario;
@@ -27,6 +32,12 @@ public class Usuario {
 	}
 	public void setRol(String rol) {
 		this.rol = rol;
+	}
+	public void añadirTarea(Tarea tarea) {
+		this.tareasAsignadas.add(tarea);
+	}
+	public List<Tarea> getTareasAsignadas() {
+		return tareasAsignadas;
 	}
 	
 }
