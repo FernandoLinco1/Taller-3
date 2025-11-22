@@ -2,6 +2,7 @@ package taller3;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 public class MenuProyecto {
 	private static Scanner lector;
@@ -166,6 +167,14 @@ public class MenuProyecto {
 							sis.cambiarEstadoTarea(ta, estado);
 						}
 						i++;
+					}
+					break;
+				case "4": 
+					List<Imprecion> accion= sis.accionTareas(sis.tareasDeColaborador(u));
+					
+					Visitor v= new ImprimirAcciones();
+					for(Imprecion im: accion) {
+						im.imprimir(v);
 					}
 					break;
 				case "5":

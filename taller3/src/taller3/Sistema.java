@@ -1,6 +1,7 @@
 package taller3;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 public class Sistema {
 	
 	private ArrayList<Usuario> usuarios= new ArrayList<>();
@@ -113,6 +114,8 @@ public class Sistema {
 		}
 
 	}
+			
+		
 	public String verificacionUsuario(String usuario) {
 		for(Usuario u: usuarios) {
 			if(u.getNombreUsuario().equals(usuario)) {
@@ -127,7 +130,19 @@ public class Sistema {
 		
 		
 	} 
-	
+	public List<Imprecion> accionTareas(ArrayList<Tarea> u){
+		List<Imprecion> lista= new ArrayList<>();
+		for(Tarea ta: u) {
+			if(ta.getTipo().equals("Bug")) {
+				lista.add(new Bug(ta.getIdProyecto(),ta.getIdTarea(),ta.getTipo(),ta.getDescripcion(),ta.getEstado(),ta.getResponsable(),ta.getComplejidad(),ta.getFecha()));
+			}else if(ta.getTipo().equals("Feature")) {
+				lista.add(new Feature(ta.getIdProyecto(),ta.getIdTarea(),ta.getTipo(),ta.getDescripcion(),ta.getEstado(),ta.getResponsable(),ta.getComplejidad(),ta.getFecha()));
+			}else if(ta.getTipo().equals("Documentacion")) {
+				lista.add(new Documentacion(ta.getIdProyecto(),ta.getIdTarea(),ta.getTipo(),ta.getDescripcion(),ta.getEstado(),ta.getResponsable(),ta.getComplejidad(),ta.getFecha()));
+			}
+		}
+		return lista;
+	}
 	public String verificarContraseña(String usuario, String contraseña) {
 		for(Usuario u: usuarios) {
 			if(u.getNombreUsuario().equals(usuario)) {
