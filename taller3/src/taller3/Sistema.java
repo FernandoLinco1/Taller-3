@@ -36,14 +36,14 @@ public class Sistema {
 		cont= cont+2;
 		
 		if(cont<10) {
-		  String id= "PR00"+String.valueOf(cont);
-		  proyectos.add(new Proyecto(id,nombreP,encargadoP));		
+			String id= "PR00"+String.valueOf(cont);
+			proyectos.add(new Proyecto(id,nombreP,encargadoP));		
 		}else if(cont<100) {
-			  String id= "PR0"+String.valueOf(cont);
-			  proyectos.add(new Proyecto(id,nombreP,encargadoP));		
+			String id= "PR0"+String.valueOf(cont);
+			proyectos.add(new Proyecto(id,nombreP,encargadoP));		
 			}else if(cont>=100) {
-				  String id= "PR"+String.valueOf(cont);
-				  proyectos.add(new Proyecto(id,nombreP,encargadoP));		
+				String id= "PR"+String.valueOf(cont);
+				proyectos.add(new Proyecto(id,nombreP,encargadoP));	
 				}
 		
 		
@@ -203,8 +203,37 @@ public class Sistema {
 			}
 		}
 	}
+	public void addTarea(String idProyecto, String tipo, String descripcion, String responsable, String fecha) {
+		int cont=0;
+		for(int i=0;i<tareas.size();i++) {
+			cont=i;
+		}
+		cont= cont+2;
+		String idTarea = null;
+		if(cont<10) {
+			idTarea = "T00"+String.valueOf(cont);		
+		}else if(cont<100) {
+			idTarea = "T0"+String.valueOf(cont);		
+			}else if(cont>=100) {
+				idTarea = "T"+String.valueOf(cont);
+			}
+		String complejidad = null;
+		if(tipo.equalsIgnoreCase("Bug")) {
+			complejidad = "Alta";
+		} else if (tipo.equalsIgnoreCase("Feature")) {
+			complejidad = "Media";
+		} else if (tipo.equalsIgnoreCase("Documentacion")) {
+			complejidad = "Baja";
+		}
+		tareas.add(new Tarea(idProyecto, idTarea, tipo, descripcion, "Pendiente", responsable,
+			complejidad, fecha));
 		
-
+			
+		
+		
+		
+	
+	}
 	
 	
 	

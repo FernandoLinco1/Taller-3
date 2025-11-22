@@ -86,30 +86,87 @@ public class MenuProyecto {
 					break;
 				case "3":
 					System.out.println();
-					System.out.println("1. Agregar proyecto.");
-					System.out.println("2. Eliminar proyecto.");
+					System.out.println("1. Agregar tarea.");
+					System.out.println("2. Eliminar tarea.");
 					System.out.print(">>> ");
 					decision= lector.nextLine();
 					switch(decision) {
+					//inicio de opciones sobre agregar o eliminar tarea
 					case "1":
+						System.out.println();
+						System.out.println("elige un proyecto donde se va a agregar una tarea");
 						for(int i=0;i<sis.getProyectos().size();i++) {
 							System.out.println((i+1)+". ID: "+sis.getProyectos().get(i).getIdProyecto()+" Proyecto: "+sis.getProyectos().get(i).getNombre()+" Encargado: "+sis.getProyectos().get(i).getResponsable());
 						}
 						System.out.print(">>> ");
-						String proyecto= lector.nextLine();
-						System.out.println("Tipo de tarea.");
-						System.out.println("1. Bug.");
-						System.out.println("2. Feature.");
-						System.out.println("3. Documentación.");
+						int indiceProyecto = Integer.valueOf(lector.nextLine());
+						indiceProyecto -= 1;
+						String idDelProyecto = sis.getProyectos().get(indiceProyecto).getIdProyecto();
+						System.out.println();
+						System.out.println("elije al colaborador que tenga asignada esta tarea");
+						int contador = 0;
+						ArrayList<String> colaboradores = new ArrayList<>();
+						for(int i=0;i<sis.getUsuarios().size();i++) {
+							if (sis.getUsuarios().get(i).getRol().equalsIgnoreCase("Colaborador")) {
+								contador += 1;
+								System.out.println(contador + ". Nombre: " + sis.getUsuarios().get(i).getNombreUsuario() );
+								colaboradores.add(sis.getUsuarios().get(i).getNombreUsuario());
+							}	
+						}
 						System.out.print(">>> ");
-						String tipo= lector.nextLine();
-						System.out.println("Descripción.");
-						String descripcion= lector.nextLine();
+						int colaboradorSeleccionado = Integer.valueOf(lector.nextLine());
+						colaboradorSeleccionado -= 1;
+						String elColaborador = colaboradores.get(colaboradorSeleccionado);
+						String fecha;
+						String[] separador;
+						do {
+							System.out.println();
+							System.out.println("ingrese una fecha en el formato (AÑO-MES-DIA)");
+							System.out.print(">>> ");
+							fecha = lector.nextLine();
+							separador = fecha.split("-");
+							if (separador.length != 3) {
+				                System.out.println("Formato de fecha incorrecto. Asegúrese de usar AÑO-MES-DIA separados por guion.");
+							}
+						} while (separador.length != 3);
+						System.out.println("añade una descripcion");
+						System.out.print(">>> ");
+						String descripcion = lector.nextLine();
+						int tipoDeTarea;
+						do {
+							System.out.println();
+							System.out.println("elija un tipo de tarea");
+							System.out.println("1. Bug");
+							System.out.println("1. Feature");
+							System.out.println("1. Documentacion");
+							System.out.print(">>> ");
+							tipoDeTarea = Integer.valueOf(lector.nextLine());
+							if (tipoDeTarea < 1 && tipoDeTarea > 3) {
+				                System.out.println("no es un tipo valido");
+							}
+						} while (tipoDeTarea < 1 && tipoDeTarea > 3);
+						String elTipo = null;
+						if (tipoDeTarea == 1) {
+							elTipo = "Bug";
+						} else if (tipoDeTarea == 2) {
+							elTipo = "Feature";
+						} else if (tipoDeTarea == 3) {
+							elTipo = "Documentacion";
+						}
+						sis.addTarea(idDelProyecto, elTipo, descripcion, elColaborador, fecha);
+							
 						
-					break;
-					
-					
+						break;
+					case "2":
+						
+						break;
+					default:
+						System.out.println("Eleccion incorrecta...");
 					}
+					
+					
+					
+					
 					break;
 				case "6":
 					System.out.println("Saliendo del menu...");
