@@ -1,9 +1,9 @@
 package tallerPOO3;
 
 public abstract class Hechizo {
-	protected String nombreHechizo;
-	protected String tipo;
-	protected int daño;
+	private String nombreHechizo;
+	private String tipo;
+	private int daño;
 	public Hechizo(String nombreHechizo, String tipo, int daño) {
 		this.nombreHechizo = nombreHechizo;
 		this.tipo = tipo;
@@ -21,7 +21,7 @@ public abstract class Hechizo {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	public int getDaño() {
+    public int getDaño() {
 		return daño;
 	}
 	public void setDaño(int daño) {

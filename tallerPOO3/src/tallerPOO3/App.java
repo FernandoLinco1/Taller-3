@@ -60,14 +60,19 @@ private static SistemaImplement sistema= new SistemaImplement(lecturaMatriz("Hec
 						eleccionAnalisis1();
 						break;
 					case "2":
+						eleccionAnalisis2();
 						break;
 					case "3":
+						eleccionAnalisis3();
 						break;
 					case "4":
+						eleccionAnalisis4();
 						break;
 					case "5":
+						eleccionAnalisis5();
 						break;
 					case "6":
+						eleccionAnalisis6();
 						break;
 					case "7":
 						System.out.println("\r\n"+"Cerrando menu..."+"\r\n");
@@ -115,11 +120,56 @@ private static SistemaImplement sistema= new SistemaImplement(lecturaMatriz("Hec
 	public static void eleccionAnalisis1() {
 		ArrayList<Hechizo> top= sistema.top_10Hechizos();
 		int i=1;
-		System.out.println("Top 10 Mejores Hechizos:");
+		System.out.println("\r\n"+"Top 10 Mejores Hechizos:");
 		for(Hechizo hechizo:top) {
+			System.out.println(i+") "+hechizo.getNombreHechizo());
+			i++;
+		}
+	}
+	public static void eleccionAnalisis2() {
+		ArrayList<Mago> top= sistema.top_3Magos();
+		int i=1;
+		System.out.println("\r\n"+"Top 3 Mejores Magos:");
+		for(Mago mago:top) {
+			System.out.println(i+") "+mago.getNombre());
+			i++;
+		}
+	}
+	public static void eleccionAnalisis3() {
+		ArrayList<Hechizo> listaHechizos= sistema.getListaHechizos();
+		int i=1;
+		System.out.println("\r\n"+"Todos los Hechizos:");
+		for(Hechizo hechizo:listaHechizos) {
+			System.out.println(i+") "+hechizo.getNombreHechizo());
+			i++;
+		}
+	}
+	public static void eleccionAnalisis4() {
+		ArrayList<Mago> listaMagos= sistema.getListaMagos();
+		int i=1;
+		System.out.println("\r\n"+"Todos los Magos:");
+		for(Mago mago:listaMagos) {
+			System.out.println(i+") "+mago.getNombre());
+			i++;
+		}
+	}
+	public static void eleccionAnalisis5() {
+		ArrayList<Hechizo> listaHechizos= sistema.getListaHechizos();
+		int i=1;
+		System.out.println("\r\n"+"Todos los Hechizos:");
+		for(Hechizo hechizo:listaHechizos) {
 			System.out.println(i+") "+hechizo.getNombreHechizo()+" Puntaje: "+hechizo.calcularPuntaje());
 			i++;
 		}
-		System.out.println();
 	}
+	public static void eleccionAnalisis6() {
+		ArrayList<Mago> listaMagos= sistema.getListaMagos();
+		int i=1;
+		System.out.println("\r\n"+"Todos los Magos:");
+		for(Mago mago:listaMagos) {
+			System.out.println(i+") "+mago.getNombre()+" Puntaje: "+mago.sumaPuntajeHechizo());
+			i++;
+		}
+	}
+	
 }

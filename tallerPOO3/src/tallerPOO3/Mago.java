@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Mago {
 	private String nombre;
-	private ArrayList<Hechizo> listaDeEchizos;
-	public Mago(String nombre, ArrayList<Hechizo> listaDeEchizos) {
+	private ArrayList<Hechizo> listaDeHechizos;
+	public Mago(String nombre, ArrayList<Hechizo> listaDeHechizos) {
 		super();
 		this.nombre = nombre;
-		this.listaDeEchizos = listaDeEchizos;
+		this.listaDeHechizos = listaDeHechizos;
 	}
 	public String getNombre() {
 		return nombre;
@@ -17,10 +17,17 @@ public class Mago {
 		this.nombre = nombre;
 	}
 	public ArrayList<Hechizo> getListaDeEchizos() {
-		return listaDeEchizos;
+		return listaDeHechizos;
 	}
 	public void setListaDeEchizos(ArrayList<Hechizo> listaDeEchizos) {
-		this.listaDeEchizos = listaDeEchizos;
+		this.listaDeHechizos = listaDeEchizos;
+	}
+	public int sumaPuntajeHechizo() {
+		int total=0;
+		for(Hechizo hechizo:listaDeHechizos) {
+			total+= hechizo.calcularPuntaje();
+		}
+		return total;
 	}
 	
 }

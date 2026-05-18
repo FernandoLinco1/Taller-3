@@ -23,7 +23,7 @@ public class HechizoTipoPlanta extends Hechizo{
 	@Override
 	public int calcularPuntaje() {
 		//  Puntaje = Daño + (DuracionStun * CantPlanta)
-		return daño+(DuracionStun*CantPlantas);
+		return getDaño()+(DuracionStun*CantPlantas);
 	}
 	
 }

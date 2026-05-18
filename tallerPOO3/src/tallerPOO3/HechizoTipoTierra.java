@@ -18,7 +18,7 @@ public class HechizoTipoTierra extends Hechizo{
 	@Override
 	public int calcularPuntaje() {
 		//  Puntaje = (Daño*MejoraDefensa)/2
-		return (daño*MejoraDefensa)/2;
+		return (getDaño()*MejoraDefensa)/2;
 	}
 	
 }

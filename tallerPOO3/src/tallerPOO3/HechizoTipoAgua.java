@@ -23,7 +23,7 @@ public class HechizoTipoAgua extends Hechizo {
 	@Override
 	public int calcularPuntaje() {
 		//Puntaje = (Daño+CantidadHeal+PresionDeAgua)*2
-		return (daño+CantidadHeal+PresionDelAgua)*2;
+		return (getDaño()+CantidadHeal+PresionDelAgua)*2;
 	}
 	
 }

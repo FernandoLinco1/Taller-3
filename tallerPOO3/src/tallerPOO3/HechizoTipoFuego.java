@@ -18,7 +18,7 @@ public class HechizoTipoFuego extends Hechizo{
 	@Override
 	public int calcularPuntaje() {
 		// Puntaje = Daño*DuracionQuemadura
-		return daño*DuracionQuemadura;
+		return getDaño()*DuracionQuemadura;
 	}
 	
 }

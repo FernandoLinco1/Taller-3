@@ -31,6 +31,26 @@ public class SistemaImplement {
 			return top;
 		
 	}
+	public ArrayList<Mago> top_3Magos(){
+		ArrayList<Mago> lista= new ArrayList<>();
+		 ArrayList<Mago> top= new ArrayList<>();
+			for(Mago mago: listaMagos) {
+				lista.add(mago);
+			}
+			for(int i=0;i<lista.size()-1;i++) {	
+				for(int j=i+1;j<lista.size();j++) {
+					if(lista.get(i).sumaPuntajeHechizo()<lista.get(j).sumaPuntajeHechizo()) {
+						Mago aux= lista.get(i);
+						lista.set(i, lista.get(j));
+						lista.set(j, aux);
+					}
+				}
+			}
+			for(int k=0;k<3;k++) {
+				top.add(lista.get(k));
+			}
+			return top;
+	}
 	public ArrayList<Hechizo> getListaHechizos() {
 		return listaHechizos;
 	}
