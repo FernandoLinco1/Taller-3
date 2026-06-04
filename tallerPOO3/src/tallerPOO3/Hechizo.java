@@ -18,9 +18,6 @@ public abstract class Hechizo {
 	public String getTipo() {
 		return tipo;
 	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
     public int getDaño() {
 		return daño;
 	}
@@ -28,4 +25,8 @@ public abstract class Hechizo {
 		this.daño = daño;
 	}
 	public abstract int calcularPuntaje();
+	public abstract void setCaracteristicaEspecial1(int valor);
+	public abstract void setCaracteristicaEspecial2(int valor);
+	public abstract int getCaracteristicaEspecial1(); 
+	public abstract int getCaracteristicaEspecial2(); 
 }

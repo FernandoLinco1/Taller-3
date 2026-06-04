@@ -8,22 +8,31 @@ public class HechizoTipoPlanta extends Hechizo{
 		DuracionStun = duracionStun;
 		CantPlantas = cantPlantas;
 	}
-	public int getDuracionStun() {
-		return DuracionStun;
-	}
-	public void setDuracionStun(int duracionStun) {
-		DuracionStun = duracionStun;
-	}
-	public int getCantPlantas() {
-		return CantPlantas;
-	}
-	public void setCantPlantas(int cantPlantas) {
-		CantPlantas = cantPlantas;
-	}
+	
 	@Override
 	public int calcularPuntaje() {
 		//  Puntaje = Daño + (DuracionStun * CantPlanta)
 		return getDaño()+(DuracionStun*CantPlantas);
+	}
+	@Override
+	public void setCaracteristicaEspecial1(int valor) {
+		DuracionStun = valor;		
+	}
+	@Override
+	public void setCaracteristicaEspecial2(int valor) {
+		CantPlantas = valor;		
+	}
+
+	@Override
+	public int getCaracteristicaEspecial1() {
+		// TODO Auto-generated method stub
+		return DuracionStun;
+	}
+
+	@Override
+	public int getCaracteristicaEspecial2() {
+		// TODO Auto-generated method stub
+		return CantPlantas;
 	}
 	
 }

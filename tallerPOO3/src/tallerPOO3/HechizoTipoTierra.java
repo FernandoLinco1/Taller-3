@@ -6,19 +6,27 @@ public class HechizoTipoTierra extends Hechizo{
 		super(nombreHechizo, tipo, daño);
 		MejoraDefensa = mejoraDefensa;
 	}
-
-	public int getMejoraDefensa() {
-		return MejoraDefensa;
-	}
-
-	public void setMejoraDefensa(int mejoraDefensa) {
-		MejoraDefensa = mejoraDefensa;
-	}
-
 	@Override
 	public int calcularPuntaje() {
 		//  Puntaje = (Daño*MejoraDefensa)/2
 		return (getDaño()*MejoraDefensa)/2;
+	}
+	@Override
+	public void setCaracteristicaEspecial1(int valor) {
+		MejoraDefensa = valor;
+		
+	}
+	@Override
+	public void setCaracteristicaEspecial2(int valor) {}
+	@Override
+	public int getCaracteristicaEspecial1() {
+		// TODO Auto-generated method stub
+		return MejoraDefensa;
+	}
+	@Override
+	public int getCaracteristicaEspecial2() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }
